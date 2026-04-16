@@ -1,0 +1,379 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+
+}
+
+.app {
+	display: flex;
+	min-height: 100vh;
+}
+
+.menu-toggle {
+	display: none;
+	position: fixed;
+	top: 2rem;
+	right: 2rem;
+	width: 60px;
+	height: 60px;
+	border-radius: 99px;
+	background-color: #707070;
+	cursor: pointer;
+}
+
+.hamburger {
+	position: relative;
+	top: calc(50% - 2px);
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 32px;
+}
+
+.hamburger > span,
+.hamburger > span::before,
+.hamburger > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background-color: #FFF;
+  transition-duration: .25s;
+}
+
+.hamburger > span::before {
+  content: '';
+  top: -8px;
+}
+.hamburger > span::after {
+  content: '';
+  top: 8px;
+}
+.menu-toggle.is-active .hamburger > span {
+  transform: rotate(45deg);
+}
+.menu-toggle.is-active .hamburger > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+.menu-toggle.is-active .hamburger > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+.sidebar {
+	flex: 1 1 0;
+	max-width: 300px;
+	padding: 2rem 1rem;
+	background-color: #575757;
+}
+
+.sidebar h3 {
+	color: #ff9100;
+	font-size: 1rem;
+	text-transform: uppercase;
+	margin-bottom: 0.5em;
+}
+
+.sidebar .menu {
+	margin: 0 -1rem;
+}
+
+.sidebar .menu .menu-item {
+	display: block;
+	padding: 0.45em;
+	color: #FFF;
+	text-decoration: none;
+	transition: 0.2s linear;
+}
+
+.sidebar .menu .menu-item:hover,
+.sidebar .menu .menu-item.is-active {
+	color: #ff9100;
+	border-right: 5px solid #ff9100;
+}
+
+.sidebar .menu .menu-item:hover {
+	border-right: 5px solid #bebebe;
+}
+
+.content {
+	flex: 1 1 0;
+	padding: 2rem;
+}
+.content h1 {
+	color: #002d4c;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.content p {
+	color: #000000;
+
+}
+
+@media (max-width: 1024px) {
+	.sidebar {
+		max-width: 300px;
+	}
+}
+
+@media (max-width: 768px) {
+	.menu-toggle {
+		display: block;
+	}
+	.content {
+		padding-top: 8rem;
+	}
+	.sidebar {
+		position: fixed;
+		top: 0;
+		left: -300px;
+		height: 100vh;
+		width: 100%;
+		max-width: 300px;
+		transition: 0.2s linear;
+        overflow-y: auto;
+        overflow-x: hidden;
+	}
+
+	.sidebar.is-active {
+		left: 0;
+	}
+}
+body {
+	background-color: #8d8d8d91;
+}
+
+
+/* Загальні стилі для блоку */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+/* Стилі для блоку вводу */
+.box {
+    width: 100%;
+    max-width: 400px; /* Максимальна ширина для більших екранів */
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Стилі для тексту в блоку вводу */
+.box p output{
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Стилі для поля вводу в блоку вводу */
+.box input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc; /* Сірий колір рамки за замовчуванням */
+    border-radius: 5px;
+    transition: border-color 0.3s; /* Плавний перехід кольору рамки */
+    text-align: center;
+}
+
+/* Стилі для поля вводу при фокусі в блоку вводу */
+.box input[type="text"]:focus {
+    border-color: #ffa200; /* Оранжевий колір рамки при фокусі */
+    outline: none; /* Прибираємо синю рамку браузера */
+    box-shadow: 0 0 5px rgba(255, 162, 0, 0.5); /* Додаємо легке підсвічування */
+}
+
+.box-windowOff {
+    display: none;
+}
+
+.box-windowOn {
+    display: block;
+}
+
+/* Стилі для кнопки "РОЗРАХУНОК" (при потребі) */
+.button-46 {
+    background-color: #979797;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-46:hover {
+    background-color: #ffa200;
+}
+
+
+/* Медіа-запит для мобільних пристроїв */
+@media (max-width: 768px) {
+    .box {
+        max-width: 90%; /* Зменшуємо максимальну ширину для маленьких екранів */
+    }
+}
+
+/* Медіа-запит для ще менших екранів, наприклад, смартфонів в портретному режимі */
+@media (max-width: 480px) {
+    .box {
+        max-width: 95%; /* Зменшуємо максимальну ширину ще більше */
+    }
+}
+
+.logo img {
+    display: block;
+    margin: 0 auto;
+}
+
+.footer {
+    text-align: center;
+    background-color: #333; /* Колір фону */
+    color: #fff; /* Колір тексту */
+    padding: 10px 0; /* Відступи відгоризонтально і вертикально */
+    position: absolute;
+    bottom: 0; /* Розмістити внизу */
+    width: 300px
+}
+
+.sidebar>ul.logout {
+	position: absolute;
+	left:0;
+	bottom:0;
+	}
+
+/* Стиль для списку */
+ul.logout {
+    list-style: none; /* Видаляємо маркери списку */
+    padding: 0; /* Видаляємо внутрішні відступи */
+    margin: 0; /* Видаляємо зовнішні відступи */
+    
+}
+
+/* Стиль для елемента списку */
+ul.logout li {
+    margin-bottom: 10px; /* Відступ вниз між елементами списку */
+    background-color: #636363; /* Колір фону елемента */
+    padding: 10px; /* Внутрішні відступи */
+    border-radius: 5px; /* Закруглені кути */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тінь для елемента */
+	width: 300px;
+}
+
+/* Стиль для тексту */
+ul.logout li .nav-text {
+    font-size: 18px; /* Розмір тексту */
+    font-weight: bold; /* Жирний шрифт */
+    color: #ffa200; /* Колір тексту */
+
+}
+
+.special-link {
+    color: #333; /* червоний колір */
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 10px;
+}
+
+.column {
+    flex: 1 1 220px;
+    max-width: 300px;
+}
+
+/* Компактні блоки */
+.box {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* Менші поля вводу */
+.box input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+/* Кнопка меншого розміру */
+.button-46 {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #707070;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.button-46:hover {
+    background-color: #ffa200;
+}
+
+/* Компактна нижня коробка */
+.small-box {
+    font-size: 13px;
+    padding: 10px;
+    line-height: 1.4;
+}
+
+.special-link {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #333;
+}
+
+/* Мобільна адаптація */
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .column {
+        max-width: 100%;
+    }
+
+    .box {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .box input[type="text"] {
+        font-size: 13px;
+        padding: 7px;
+    }
+
+    .button-46 {
+        font-size: 13px;
+        padding: 8px;
+    }
+}

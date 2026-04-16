@@ -1,0 +1,6 @@
+Solids in Drilling Mud Problem
+
+Generally, mud additives (OBM additives – WBM additives) and drilling cuttings are the major sources of solids. Formation cuttings are contaminants that degrade the performance of the drilling fluid. If we didn’t remove the cuttings, drill string & drilling bit rotation would grind them into smaller and smaller particles that become more difficult to withdraw from the drilling fluid. One of the primary uses for drilling fluid is to carry unwanted drilled solids from the borehole. These solids are contaminants and can lead to numerous operational problems if left in the mud.
+Solids can be distinguished in two categories:
+Low Gravity Solids (LGS) with a specific gravity range of 2.3 to 2.8 S.G.
+High Gravity Solids (HGS) with S.G. of 4.2 or more.

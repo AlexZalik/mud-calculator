@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="handheldfriendly" content="true">
+    <meta name="mobileoptimized" content="240">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MUDCalculator</title>
+	<link rel="stylesheet" href="/style/reset.css" />
+	<link rel="stylesheet" href="/style/style.css" />
+	<link rel="icon" type="image/png" href="/image/MUDCalc_Logo.png" />
+	
+
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+
+			<nav class="menu">
+                <a href="/index.html" class="menu-item is-active">ГОЛОВНА СТОРІНКА</a>
+				<a href="/page/page1.html" class="menu-item">CПІВВІДНОШЕННЯ</a>
+				<a href="/page/page2.html" class="menu-item">КАРБОНАТНА ЛУЖНІСТЬ</a>
+				<a href="/page/page3.html" class="menu-item">РЕОЛОГІЯ</a>
+				<a href="/page/page4.html" class="menu-item">ВМІСТ ІОНІВ Са<sup>2+</sup> ТА Mg<sup>2+</sup></a>
+				<a href="/page/page5.html" class="menu-item">ХЛОРИДИ</a>
+				<a href="/page/page6.html" class="menu-item">MBT</a>
+				<a href="/page/page7.html" class="menu-item">ОБВАЖНЕННЯ</a>
+				<a href="/page/page8.html" class="menu-item">ЗМІНА ГУСТИНИ</a>
+				<a href="/page/page9.html" class="menu-item">НЕОБХІДНА ГУСТИНА</a>
+				<a href="/page/page10.html" class="menu-item">ЛІМІТ ГУСТИНИ</a>
+				<a href="/page/page11.html" class="menu-item">АНАЛІЗ ТВЕРДОЇ ФАЗИ</a>
+				<a href="/page/page12.html" class="menu-item">ЕЦГ</a>
+			</nav>
+			<!-- Додайте ім'я користувача в footer -->
+
+
+		</aside>
+
+		<main class="content">
+			<h1>ВІТАЮ, ІНЖЕНЕР</h1>
+			<p>	"MUDCalculator" - це інженерна програма, призначена для спрощення та оптимізації різних інженерних розрахунків і завдань. 
+				Забезпечуючи широкий спектр інструментів та функцій, програма допомагає інженерам ефективно вирішувати різноманітні завдання. 
+				Інформація, що надана, була підготовлена з великою уважністю, але варто зауважити, що ніяких гарантій стосовно її вмісту не надається.
+				За можливі результати використання наданої інформації ми не несемо відповідальності.
+			</p>
+
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+
+	</script>
+</body>
+</html>

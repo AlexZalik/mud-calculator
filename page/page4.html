@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="handheldfriendly" content="true">
+    <meta name="mobileoptimized" content="240">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MUDCalculator</title>
+	<link rel="stylesheet" href="/style/reset.css" />
+	<link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+			
+			<nav class="menu">
+                <a href="/index.html" class="menu-item">ГОЛОВНА СТОРІНКА</a>
+				<a href="/page/page1.html" class="menu-item">CПІВВІДНОШЕННЯ</a>
+				<a href="/page/page2.html" class="menu-item">КАРБОНАТНА ЛУЖНІСТЬ</a>
+				<a href="/page/page3.html" class="menu-item">РЕОЛОГІЯ</a>
+				<a href="/page/page4.html" class="menu-item is-active">ВМІСТ ІОНІВ Са<sup>2+</sup> ТА Mg<sup>2+</sup></a>
+				<a href="/page/page5.html" class="menu-item">ХЛОРИДИ</a>
+				<a href="/page/page6.html" class="menu-item">MBT</a>
+				<a href="/page/page7.html" class="menu-item">ОБВАЖНЕННЯ</a>
+				<a href="/page/page8.html" class="menu-item">ЗМІНА ГУСТИНИ</a>
+				<a href="/page/page9.html" class="menu-item">НЕОБХІДНА ГУСТИНА</a>
+				<a href="/page/page10.html" class="menu-item">ЛІМІТ ГУСТИНИ</a>
+				<a href="/page/page11.html" class="menu-item">АНАЛІЗ ТВЕРДОЇ ФАЗИ</a>
+				<a href="/page/page12.html" class="menu-item">ЕЦГ</a>
+			</nav>
+
+
+		</aside>
+
+		<main class="content">
+			<h1>ВМІСТ ІОНІВ Са<sup>2+</sup> ТА Mg<sup>2+</sup></h1>
+			<div class="container">
+				<div class="box">
+					<p>Об'єм трилону Б на титрування Са<sup>2+</sup>, мл</p>
+					<input type="text" id="input_1"/>
+				</div>
+				<div class="box">
+					<p>Об'єм трилону Б на титрування Mg<sup>2+</sup>, мл</p>
+					<input type="text" id="input_2"/>
+				</div>
+				<div class="box">
+					<p>Нормальність трилону Б</p>
+					<input type="text" id="input_3" value="0.1"/>
+				</div>
+				<div class="box">
+					<p>Кількість взятого фільтрату, мл</p>
+					<input type="text" id="input_4" value="1"/>
+				</div>
+				<div class="box">
+					<button class="button-46" role="button" id="submit-button" type="submit" onclick="CaAndMg()">РОЗРАХУНОК</button>
+				</div>
+				<div class="box">
+					<div id="output_5"></div>
+					<div id="output_1"></div>
+					<div id="output_2"></div>
+					<div id="output_3"></div>
+					<div id="output_4"></div>
+				</div>
+				<div class="box">	
+					<p>© 2025</p>
+					<p><strong>Олександр Заліський</strong></p>
+					<a href="https://gse.ua" class="special-link" target="_blank" rel="noopener noreferrer">www.gse.ua</a>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+
+		function CaAndMg() {
+            var valueTrilonCa = parseFloat(document.getElementById('input_1').value.replace(',', '.'));
+            var valueTrilonMg = parseFloat(document.getElementById('input_2').value.replace(',', '.'));
+            var normalTrilon = parseFloat(document.getElementById('input_3').value.replace(',', '.'));
+            var volumeFiltr = parseFloat(document.getElementById('input_4').value.replace(',', '.'));
+
+            document.getElementById('output_1').textContent = '';
+            document.getElementById('output_2').textContent = '';
+            document.getElementById('output_3').textContent = '';
+            document.getElementById('output_4').textContent = '';
+            document.getElementById('output_5').textContent = '';
+
+            if (!isNaN(valueTrilonCa) && !isNaN(valueTrilonMg) && !isNaN(normalTrilon) && !isNaN(volumeFiltr)) {
+                var result_Ca_percent = (normalTrilon * 0.97 * 20.04 * valueTrilonCa) / (volumeFiltr * 10);
+                var result_Mg_percent = ((normalTrilon * 0.97 * 12.16) * (valueTrilonMg - valueTrilonCa)) / (volumeFiltr * 10);
+                var result_Ca_mgL = result_Ca_percent * 10000;
+                var result_Mg_mgL = result_Mg_percent * 10000;
+
+                document.getElementById('output_1').innerHTML = "ВМІСТ ІОНІВ Са<sup>2+</sup>: " + result_Ca_percent.toFixed(3) + "% (" + result_Ca_mgL.toFixed(0) + " мг/л)";
+                document.getElementById('output_3').innerHTML = "ВМІСТ ІОНІВ Mg<sup>2+</sup>: " + result_Mg_percent.toFixed(3) + "% (" + result_Mg_mgL.toFixed(0) + " мг/л)";
+            } else {
+                document.getElementById('output_5').textContent = 'Введіть числові значення';
+            }
+        }
+	</script>
+</body>
+</html>

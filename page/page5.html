@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="handheldfriendly" content="true">
+    <meta name="mobileoptimized" content="240">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MUDCalculator</title>
+	<link rel="stylesheet" href="/style/reset.css" />
+	<link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+			<nav class="menu">
+                <a href="/index.html" class="menu-item">ГОЛОВНА СТОРІНКА</a>
+				<a href="/page/page1.html" class="menu-item">CПІВВІДНОШЕННЯ</a>
+				<a href="/page/page2.html" class="menu-item">КАРБОНАТНА ЛУЖНІСТЬ</a>
+				<a href="/page/page3.html" class="menu-item">РЕОЛОГІЯ</a>
+				<a href="/page/page4.html" class="menu-item">ВМІСТ ІОНІВ Са<sup>2+</sup> ТА Mg<sup>2+</sup></a>
+				<a href="/page/page5.html" class="menu-item is-active">ХЛОРИДИ</a>
+				<a href="/page/page6.html" class="menu-item">MBT</a>
+				<a href="/page/page7.html" class="menu-item">ОБВАЖНЕННЯ</a>
+				<a href="/page/page8.html" class="menu-item">ЗМІНА ГУСТИНИ</a>
+				<a href="/page/page9.html" class="menu-item">НЕОБХІДНА ГУСТИНА</a>
+				<a href="/page/page10.html" class="menu-item">ЛІМІТ ГУСТИНИ</a>
+				<a href="/page/page11.html" class="menu-item">АНАЛІЗ ТВЕРДОЇ ФАЗИ</a>
+				<a href="/page/page12.html" class="menu-item">ЕЦГ</a>
+			</nav>
+
+		</aside>
+
+		<main class="content">
+			<h1>ВИЗНАЧЕННЯ ВМІСТУ ХЛОРИДІВ</h1>
+			<div class="container">
+				<div class="box">
+					<p>Загальна мінералізація, %</p>
+					<input type="text" id="input_1"/>
+				</div>
+				<div class="box">
+					<p>Вміст KCL, об.%</p>
+					<input type="text" id="input_2" value="0"/>
+				</div>
+				<div class="box">
+					<button class="button-46" role="button" id="submit-button" type="submit" onclick="chlorides()">РОЗРАХУНОК</button>
+				</div>
+				<div class="box">
+					<div id="output_3"></div>
+					<div id="output_1"></div>
+					<div id="output_2"></div>
+				</div>
+				<div class="box">	
+					<p>© 2025</p>
+					<p><strong>Олександр Заліський</strong></p>
+					<a href="https://gse.ua" class="special-link" target="_blank" rel="noopener noreferrer">www.gse.ua</a>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+
+		function chlorides() {
+	    	// Отримуємо значення з полів вводу
+	    	var input_1 = parseFloat(document.getElementById('input_1').value.replace(',', '.'));
+	    	var input_2 = parseFloat(document.getElementById('input_2').value.replace(',', '.'));
+
+	    	// Очищаємо повідомлення про помилку і результати попередніх розрахунків
+	    	document.getElementById('output_1').textContent = '';
+	    	document.getElementById('output_2').textContent = '';
+	    	document.getElementById('output_3').textContent = '';
+
+	    	// Перевірка на числові значення
+	    	if (!isNaN(input_1) && !isNaN(input_2)) {
+	        	// Виконуємо математичні операції
+	        	var mineralization = input_1;
+	        	var kcl = input_2;
+
+	        	if (kcl === 0) {
+	            	var x1 = mineralization;
+	            	var result_1 = (x1 * 10000 * 35.5 / 58.5);
+	        	} else {
+	            	var x2 = ((mineralization - kcl) + (kcl / 1.275));
+	            	var result_1 = (x2 * 10000 * 35.5 / 58.5);
+	        	}
+
+	        	// Округлюємо результати до десятих
+	        	var roundedResult_1 = result_1.toFixed(0);
+
+	        	// Виводимо результати в test-output
+	        	document.getElementById('output_1').textContent = "ВМІСТ ХЛОРИДІВ";
+	        	document.getElementById('output_2').textContent = roundedResult_1 + ' мг/л';
+	    	} else {
+	        	// Виводимо повідомлення про помилку, якщо введені дані не є числовими
+	        	document.getElementById('output_3').textContent = 'Введіть числові значення';
+	    	}
+		}	
+
+		// Додавання обробників подій на поля вводу для видалення повідомлення про помилку
+		document.getElementById('input_1').addEventListener('input', function () {
+	    	document.getElementById('output_1').textContent = '';
+	    	document.getElementById('output_2').textContent = '';
+	    	document.getElementById('output_3').textContent = '';
+		});
+
+		document.getElementById('input_2').addEventListener('input', function () {
+			document.getElementById('output_1').textContent = '';
+	    	document.getElementById('output_2').textContent = '';
+	    	document.getElementById('output_3').textContent = '';
+		});
+
+	</script>
+</body>
+</html>

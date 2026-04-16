@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="handheldfriendly" content="true">
+    <meta name="mobileoptimized" content="240">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MUDCalculator</title>
+	<link rel="stylesheet" href="/style/reset.css" />
+	<link rel="stylesheet" href="/style/style.css" />
+</head>
+<body>
+	<div class="app">
+		<div class="menu-toggle">
+			<div class="hamburger">
+				<span></span>
+			</div>
+		</div>
+
+		<aside class="sidebar">
+
+			
+			<nav class="menu">
+                <a href="/index.html" class="menu-item">ГОЛОВНА СТОРІНКА</a>
+				<a href="/page/page1.html" class="menu-item">CПІВВІДНОШЕННЯ</a>
+				<a href="/page/page2.html" class="menu-item">КАРБОНАТНА ЛУЖНІСТЬ</a>
+				<a href="/page/page3.html" class="menu-item is-active">РЕОЛОГІЯ</a>
+				<a href="/page/page4.html" class="menu-item">ВМІСТ ІОНІВ Са<sup>2+</sup> ТА Mg<sup>2+</sup></a>
+				<a href="/page/page5.html" class="menu-item">ХЛОРИДИ</a>
+				<a href="/page/page6.html" class="menu-item">MBT</a>
+				<a href="/page/page7.html" class="menu-item">ОБВАЖНЕННЯ</a>
+				<a href="/page/page8.html" class="menu-item">ЗМІНА ГУСТИНИ</a>
+				<a href="/page/page9.html" class="menu-item">НЕОБХІДНА ГУСТИНА</a>
+				<a href="/page/page10.html" class="menu-item">ЛІМІТ ГУСТИНИ</a>
+				<a href="/page/page11.html" class="menu-item">АНАЛІЗ ТВЕРДОЇ ФАЗИ</a>
+				<a href="/page/page12.html" class="menu-item">ЕЦГ</a>
+			</nav>
+
+
+		</aside>
+
+		<main class="content">
+			<h1>ВИЗНАЧЕННЯ РЕОЛОГІЇ БУРОВОГО РОЗЧИНУ ЗА ДАНИМИ ОТРИМАНИМИ НА OFITE-800</h1>
+			<div class="container">
+				<div class="box">
+					<p>Кут закручування при 600 об/хв</p>
+					<input type="text" id="input_1"/>
+				</div>
+				<div class="box">
+					<p>Кут закручування при 300 об/хв</p>
+					<input type="text" id="input_2"/>
+				</div>
+				<div class="box">
+					<button class="button-46" role="button" id="submit-button" type="submit" onclick="reology()">РОЗРАХУНОК</button>
+				</div>
+				<div class="box">
+					<div id="output_7"></div>
+					<div id="output_1"></div>
+					<div id="output_2"></div>
+					<div id="output_3"></div>
+					<div id="output_4"></div>
+					<div id="output_5"></div>
+					<div id="output_6"></div>
+				</div>
+				<div class="box">	
+					<p>© 2025</p>
+					<p><strong>Олександр Заліський</strong></p>
+					<a href="https://gse.ua" class="special-link" target="_blank" rel="noopener noreferrer">www.gse.ua</a>
+				</div>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
+
+		function reology() {
+    	// Отримуємо значення з полів вводу
+    	var inputAngle600 = parseFloat(document.getElementById('input_1').value.replace(',', '.'));
+    	var inputAngle300 = parseFloat(document.getElementById('input_2').value.replace(',', '.'));
+
+    	// Очищаємо повідомлення про помилку і результати попередніх розрахунків
+    	document.getElementById('output_1').textContent = '';
+    	document.getElementById('output_2').textContent = '';
+    	document.getElementById('output_3').textContent = '';
+		document.getElementById('output_4').textContent = '';
+    	document.getElementById('output_5').textContent = '';
+    	document.getElementById('output_6').textContent = '';
+		document.getElementById('output_7').textContent = '';
+
+
+    	// Перевірка на числові значення
+    	if (!isNaN(inputAngle600) && !isNaN(inputAngle300)) {
+        // Виконуємо математичні операції
+        	var result_1 = (inputAngle600 - inputAngle300);
+        	var result_2 = ((inputAngle300 - result_1) * 4.788);
+			var result_3 = (inputAngle600 / 2)
+
+        // Округлюємо результати до десятих
+        	var roundedResult_1 = result_1.toFixed(0);
+        	var roundedResult_2 = result_2.toFixed(0);
+			var roundedResult_3 = result_3.toFixed(1);
+
+        // Виводимо результати в test-output
+        	document.getElementById('output_1').textContent = "Eфективна в'язкість(AV):";
+			document.getElementById('output_2').textContent = roundedResult_3 + ' мПа*с(сР)';
+        	document.getElementById('output_3').textContent = "Пластична в'язкість(РV):";
+			document.getElementById('output_4').textContent = roundedResult_1 + ' мПа*с(сР)';
+			document.getElementById('output_5').textContent = "Динамічне напруження зсуву:";
+			document.getElementById('output_6').textContent = roundedResult_2 + ' дПа';
+    	} else {
+        // Виводимо повідомлення про помилку, якщо введені дані не є числовими
+        	document.getElementById('output_7').textContent = 'Введіть числові значення';
+    	}
+	}
+
+	// Додавання обробників подій на поля вводу для видалення повідомлення про помилку
+	document.getElementById('input_1').addEventListener('input', function () {
+    	document.getElementById('output_1').textContent = '';
+    	document.getElementById('output_2').textContent = '';
+    	document.getElementById('output_3').textContent = '';
+		document.getElementById('output_4').textContent = '';
+    	document.getElementById('output_5').textContent = '';
+    	document.getElementById('output_6').textContent = '';
+	});
+
+	document.getElementById('input_2').addEventListener('input', function () {
+		document.getElementById('output_1').textContent = '';
+    	document.getElementById('output_2').textContent = '';
+    	document.getElementById('output_3').textContent = '';
+		document.getElementById('output_4').textContent = '';
+    	document.getElementById('output_5').textContent = '';
+    	document.getElementById('output_6').textContent = '';
+	});
+
+	</script>
+</body>
+</html>

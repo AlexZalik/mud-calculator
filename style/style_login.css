@@ -1,0 +1,48 @@
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.login-form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc; /* Сірий колір рамки за замовчуванням */
+    border-radius: 5px;
+    transition: border-color 0.3s; /* Плавний перехід кольору рамки */
+}
+
+.login-form input:focus {
+    border-color: #ffa200; /* Оранжевий колір рамки при фокусі */
+    outline: none; /* Прибираємо синю рамку браузера */
+    box-shadow: 0 0 5px rgba(255, 162, 0, 0.5); /* Додаємо легке підсвічування */
+}
+
+.login-form button {
+    padding: 10px 20px;
+    background: #979797;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s; /* Плавний перехід кольору фону */
+}
+
+.login-form button:hover {
+    background-color: #ffa200; /* Оранжевий колір кнопки при наведенні */
+}
+
+.app {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
